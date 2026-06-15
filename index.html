@@ -1,0 +1,472 @@
+<!DOCTYPE html>
+<html lang="vi" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hello Ecosystem</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind = {
+            config: {
+                darkMode: 'class',
+            }
+        }
+    </script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Lenis Smooth Scroll -->
+    <script src="https://unpkg.com/lenis@1.1.13/dist/lenis.min.js"></script> 
+    <link rel="stylesheet" href="https://unpkg.com/lenis@1.1.13/dist/lenis.css">
+
+    <style>
+        html {
+            scroll-padding-top: 4rem;
+        }
+        
+        /* Custom animations */
+        .fade-in { animation: fadeIn 0.8s ease-in-out; }
+        .slide-up { animation: slideUp 0.6s ease-out forwards; opacity: 0; }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        @keyframes slideUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .delay-100 { animation-delay: 100ms; }
+        .delay-200 { animation-delay: 200ms; }
+        .delay-300 { animation-delay: 300ms; }
+        .delay-400 { animation-delay: 400ms; }
+        .delay-500 { animation-delay: 500ms; }
+
+        /* Premium iOS Glassmorphism Toast Popup */
+        #toast {
+            visibility: hidden;
+            min-width: 320px;
+            max-width: 450px;
+            position: fixed;
+            z-index: 100;
+            left: 50%;
+            bottom: 20px;
+            transform: translateX(-50%) translateY(20px) scale(0.9);
+            opacity: 0;
+            transition: opacity 0.4s cubic-bezier(0.16, 1, 0.3, 1), 
+                        transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), 
+                        bottom 0.4s cubic-bezier(0.16, 1, 0.3, 1), 
+                        visibility 0.4s;
+        }
+        #toast.show {
+            visibility: visible;
+            opacity: 1;
+            bottom: 40px;
+            transform: translateX(-50%) translateY(0) scale(1);
+        }
+
+        #chatModal { 
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1); 
+        }
+    </style>
+</head>
+<body class="bg-gray-900 font-sans text-gray-200 antialiased overflow-x-hidden">
+
+    <!-- Navigation -->
+    <nav class="bg-gray-800/90 backdrop-blur-md fixed w-full z-40 top-0 border-b border-gray-700/40">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16 items-center">
+                <div class="flex-shrink-0 flex items-center">
+                    <span class="text-2xl font-extrabold text-blue-400 tracking-tight cursor-pointer" onclick="scrollToTop()">Hello<span class="text-white">Eco</span></span>
+                </div>
+
+                <div class="hidden md:flex space-x-8">
+                    <a href="#services" onclick="scrollToSection(event, '#services')" class="text-gray-300 hover:text-blue-400 px-3 py-2 rounded-md text-sm font-medium transition-colors">Dịch vụ</a>
+                    <a href="#about" onclick="scrollToSection(event, '#about')" class="text-gray-300 hover:text-blue-400 px-3 py-2 rounded-md text-sm font-medium transition-colors">Về chúng tôi</a>
+                    <a href="#contact" onclick="scrollToSection(event, '#contact')" class="text-gray-300 hover:text-blue-400 px-3 py-2 rounded-md text-sm font-medium transition-colors">Liên hệ</a>
+                </div>
+                <div class="flex items-center space-x-4">
+                    <button class="text-gray-300 hover:text-blue-400 font-medium text-sm hidden sm:block transition-colors">Đăng nhập</button>
+                    <button class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-full text-sm font-medium transition-all shadow-md hover:shadow-lg">Đăng ký</button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <div class="relative bg-gradient-to-br from-gray-800 to-gray-900 pt-32 pb-20 lg:pt-40 lg:pb-28 fade-in">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <h1 class="text-4xl tracking-tight font-extrabold text-white sm:text-5xl md:text-6xl">
+                <span class="block">Khám phá hệ sinh thái</span>
+                <span class="block text-blue-400 mt-2">Dành riêng cho bạn</span>
+            </h1>
+            <p class="mt-4 max-w-md mx-auto text-base text-gray-300 sm:text-lg md:mt-8 md:text-xl md:max-w-3xl">
+                Từ việc tìm kiếm cơ hội nghề nghiệp, đặt món ăn ngon, chăm sóc thú cưng cho đến mua sắm và giải trí. Tất cả đều có tại Hello Ecosystem.
+            </p>
+            <div class="mt-10 flex justify-center gap-4">
+                <a href="#services" onclick="scrollToSection(event, '#services')" class="bg-blue-600 hover:bg-blue-700 text-white px-8 py-3 border border-transparent text-base font-medium rounded-full shadow-lg hover:shadow-xl transition-all">
+                    Khám phá ngay
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Services Section -->
+    <div id="services" class="py-20 bg-gray-900">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-base text-blue-400 font-semibold tracking-wide uppercase">Dịch vụ của chúng tôi</h2>
+                <p class="mt-2 text-3xl leading-8 font-extrabold tracking-tight text-white sm:text-4xl">
+                    Mọi thứ bạn cần ở một nơi
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- HelloJob -->
+                <div class="bg-gray-800 rounded-2xl shadow-sm border border-gray-700 p-8 hover:shadow-xl hover:-translate-y-1 transition-all duration-300 cursor-pointer slide-up delay-100" onclick="showToast('HelloJob đang được phát triển. Cùng đón chờ nhé!')">
+                    <div class="w-14 h-14 bg-blue-900/50 rounded-xl flex items-center justify-center mb-6 text-blue-400">
+                        <i class="fa-solid fa-briefcase text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-white mb-3">HelloJob</h3>
+                    <p class="text-gray-400">Nền tảng tìm kiếm việc làm thông minh, kết nối ứng viên với hàng ngàn doanh nghiệp hàng đầu.</p>
+                </div>
+
+                <!-- HelloFood -->
+                <div class="bg-gray-800 rounded-2xl shadow-sm border border-gray-700 p-8 hover:shadow-xl hover:-translate-y-1 transition-all duration-300 cursor-pointer slide-up delay-200" onclick="showToast('HelloFood đang được phát triển. Cùng đón chờ nhé!')">
+                    <div class="w-14 h-14 bg-orange-900/50 rounded-xl flex items-center justify-center mb-6 text-orange-400">
+                        <i class="fa-solid fa-burger text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-white mb-3">HelloFood</h3>
+                    <p class="text-gray-400">Giao đồ ăn tận nơi nhanh chóng với hàng ngàn lựa chọn nhà hàng và món ăn đa dạng.</p>
+                </div>
+
+                <!-- HelloPet -->
+                <div class="bg-gray-800 rounded-2xl shadow-sm border border-gray-700 p-8 hover:shadow-xl hover:-translate-y-1 transition-all duration-300 cursor-pointer slide-up delay-300" onclick="showToast('HelloPet đang được phát triển. Cùng đón chờ nhé!')">
+                    <div class="w-14 h-14 bg-pink-900/50 rounded-xl flex items-center justify-center mb-6 text-pink-400">
+                        <i class="fa-solid fa-paw text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-white mb-3">HelloPet</h3>
+                    <p class="text-gray-400">Cộng đồng và dịch vụ chăm sóc toàn diện dành cho những người bạn bốn chân của bạn.</p>
+                </div>
+
+                <!-- HelloShop -->
+                <div class="bg-gray-800 rounded-2xl shadow-sm border border-gray-700 p-8 hover:shadow-xl hover:-translate-y-1 transition-all duration-300 cursor-pointer slide-up delay-400" onclick="showToast('HelloShop đang được phát triển. Cùng đón chờ nhé!')">
+                    <div class="w-14 h-14 bg-purple-900/50 rounded-xl flex items-center justify-center mb-6 text-purple-400">
+                        <i class="fa-solid fa-cart-shopping text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-white mb-3">HelloShop</h3>
+                    <p class="text-gray-400">Trải nghiệm mua sắm thương mại điện tử tiện lợi, an toàn và ngập tràn ưu đãi mỗi ngày.</p>
+                </div>
+
+                <!-- HelloWorld -->
+                <div class="bg-gray-800 rounded-2xl shadow-sm border border-gray-700 p-8 hover:shadow-xl hover:-translate-y-1 transition-all duration-300 cursor-pointer slide-up delay-500" onclick="showToast('HelloWorld đang được phát triển. Cùng đón chờ nhé!')">
+                    <div class="w-14 h-14 bg-red-900/50 rounded-xl flex items-center justify-center mb-6 text-red-400">
+                        <i class="fa-solid fa-play text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-white mb-3">HelloWorld</h3>
+                    <p class="text-gray-400">Mạng xã hội video ngắn, nơi bạn thoả sức sáng tạo và chia sẻ những khoảnh khắc thú vị.</p>
+                </div>
+
+                <!-- Coming Soon -->
+                <div class="bg-gray-800/50 rounded-2xl border-2 border-dashed border-gray-600 p-8 flex flex-col items-center justify-center text-center slide-up delay-500">
+                    <div class="w-14 h-14 bg-gray-700 rounded-full flex items-center justify-center mb-4 text-gray-400">
+                        <i class="fa-solid fa-plus text-xl"></i>
+                    </div>
+                    <h3 class="text-lg font-bold text-gray-300 mb-2">Và nhiều hơn nữa</h3>
+                    <p class="text-sm text-gray-400">Hệ sinh thái sẽ không ngừng mở rộng trong tương lai.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- About Section -->
+    <div id="about" class="py-24 bg-gray-800 border-t border-gray-700 text-gray-200">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="lg:grid lg:grid-cols-2 lg:gap-16 items-center">
+                <div class="mb-12 lg:mb-0 slide-up delay-100">
+                    <h2 class="text-base text-blue-400 font-semibold tracking-wide uppercase">Về nhà phát triển</h2>
+                    <h3 class="mt-2 text-3xl leading-8 font-extrabold tracking-tight text-white sm:text-4xl">
+                        Xin chào, mình là <span class="text-blue-400">Nguyễn Đình Hào</span>
+                    </h3>
+                    <p class="mt-6 text-lg text-gray-300 leading-relaxed">
+                        Là một học sinh với niềm đam mê cháy bỏng dành cho công nghệ và lập trình, mình đã ấp ủ ý tưởng về <strong class="text-white">Hello Ecosystem</strong>. Nhận thấy sự phân mảnh của các dịch vụ trực tuyến hiện nay, mình mong muốn tạo ra một nền tảng thống nhất.
+                    </p>
+                    <p class="mt-4 text-lg text-gray-300 leading-relaxed">
+                        Mục tiêu của dự án này không chỉ là thử thách bản thân trong việc học hỏi kiến thức lập trình mới (từ Web đến App), mà còn là khát vọng xây dựng một hệ sinh thái tiện ích, mang lại giá trị thực tế và trải nghiệm liền mạch cho cộng đồng.
+                    </p>
+                    <div class="mt-8 flex gap-4">
+                        <div class="flex items-center gap-2 text-gray-300">
+                            <i class="fa-solid fa-code text-blue-400"></i>
+                            <span class="font-medium">Web Developer</span>
+                        </div>
+                        <div class="flex items-center gap-2 text-gray-300">
+                            <i class="fa-solid fa-mobile-screen-button text-blue-400"></i>
+                            <span class="font-medium">Future App Maker</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="relative slide-up delay-300">
+                    <div class="relative rounded-2xl overflow-hidden shadow-2xl aspect-[4/3] bg-gradient-to-br from-blue-900/40 to-indigo-900/40 flex items-center justify-center group">
+                        <div class="absolute inset-0 bg-blue-600 mix-blend-multiply opacity-30 group-hover:opacity-0 transition-opacity duration-300"></div>
+                        <div class="text-center">
+                            <div class="w-32 h-32 bg-gray-800 rounded-full mx-auto mb-4 flex items-center justify-center shadow-lg transform group-hover:scale-110 transition-transform duration-300">
+                                <span class="text-5xl font-bold text-blue-400">H</span>
+                            </div>
+                            <p class="text-indigo-300 font-semibold text-xl tracking-wide">Nguyễn Đình Hào</p>
+                            <p class="text-blue-400 text-sm">Founder & Developer</p>
+                        </div>
+                    </div>
+                    <div class="absolute -bottom-6 -right-6 w-24 h-24 bg-dots pattern-dots text-blue-400 opacity-20"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Contact Section (Đã sửa đổi đưa hộp thông tin về trung tâm giống ảnh image_909c88.png) -->
+    <div id="contact" class="py-24 bg-gray-900">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12 slide-up delay-100">
+                <h2 class="text-base text-blue-400 font-semibold tracking-wide uppercase">Liên hệ</h2>
+                <p class="mt-2 text-3xl leading-8 font-extrabold tracking-tight text-white sm:text-4xl">
+                    Kết nối với tôi
+                </p>
+            </div>
+
+            <!-- Hộp thông tin liên hệ căn giữa hoàn hảo -->
+            <div class="max-w-xl mx-auto bg-blue-600 p-8 sm:p-10 text-white relative rounded-3xl shadow-xl overflow-hidden flex flex-col justify-between slide-up delay-200">
+                <div class="absolute -top-24 -right-24 w-64 h-64 bg-blue-500 rounded-full opacity-40 blur-3xl"></div>
+                <div class="absolute -bottom-24 -left-24 w-64 h-64 bg-blue-700 rounded-full opacity-40 blur-3xl"></div>
+                
+                <div class="relative z-10 space-y-8">
+                    <h4 class="text-xl font-bold border-b border-white/20 pb-4 text-center tracking-wide">Thông tin liên hệ</h4>
+                    
+                    <div class="space-y-6 max-w-md mx-auto">
+                        <!-- Phone -->
+                        <div class="flex items-center gap-4 group cursor-pointer">
+                            <div class="w-11 h-11 bg-white/10 rounded-xl flex items-center justify-center backdrop-blur-sm group-hover:bg-white/20 transition-colors shrink-0 border border-white/10">
+                                <i class="fa-solid fa-phone text-sm"></i>
+                            </div>
+                            <div>
+                                <p class="text-blue-200 text-[11px] tracking-wide uppercase font-semibold">Số điện thoại</p>
+                                <a href="tel:0768152277" class="text-base font-bold hover:text-white transition-colors tracking-wide">0768 152 277</a>
+                            </div>
+                        </div>
+
+                        <!-- Email -->
+                        <div class="flex items-center gap-4 group cursor-pointer">
+                            <div class="w-11 h-11 bg-white/10 rounded-xl flex items-center justify-center backdrop-blur-sm group-hover:bg-white/20 transition-colors shrink-0 border border-white/10">
+                                <i class="fa-solid fa-envelope text-sm"></i>
+                            </div>
+                            <div class="min-w-0">
+                                <p class="text-blue-200 text-[11px] tracking-wide uppercase font-semibold">Email</p>
+                                <a href="mailto:nguyendinhhao1201@gmail.com" class="text-sm font-bold hover:text-white transition-colors break-all">nguyendinhhao1201@gmail.com</a>
+                            </div>
+                        </div>
+
+                        <!-- Location -->
+                        <div class="flex items-center gap-4">
+                            <div class="w-11 h-11 bg-white/10 rounded-xl flex items-center justify-center backdrop-blur-sm shrink-0 border border-white/10">
+                                <i class="fa-solid fa-location-dot text-sm"></i>
+                            </div>
+                            <div>
+                                <p class="text-blue-200 text-[11px] tracking-wide uppercase font-semibold">Vị trí</p>
+                                <p class="text-base font-bold">Việt Nam</p>
+                            </div>
+                        </div>
+
+                        <!-- GitHub (Giữ nguyên hiển thị là Nguyễn Đình Hào) -->
+                        <a href="https://github.com/nguyendinhhao1201-coder" target="_blank" rel="noopener noreferrer" class="flex items-center gap-4 group cursor-pointer">
+                            <div class="w-11 h-11 bg-white/10 rounded-xl flex items-center justify-center backdrop-blur-sm group-hover:bg-white/20 transition-colors shrink-0 border border-white/10">
+                                <i class="fa-brands fa-github text-base"></i>
+                            </div>
+                            <div class="min-w-0 flex-1">
+                                <p class="text-blue-200 text-[11px] tracking-wide uppercase font-semibold">GitHub</p>
+                                <p class="text-base font-bold group-hover:text-white transition-colors tracking-wide">Nguyễn Đình Hào</p>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- Call to Action -->
+    <div class="bg-blue-600">
+        <div class="max-w-7xl mx-auto py-12 px-4 sm:px-6 lg:py-16 lg:px-8 lg:flex lg:items-center lg:justify-between">
+            <h2 class="text-3xl font-extrabold tracking-tight text-white sm:text-4xl">
+                <span class="block">Sẵn sàng để bắt đầu?</span>
+                <span class="block text-blue-200">Đăng ký tài khoản miễn phí ngay hôm nay.</span>
+            </h2>
+            <div class="mt-8 flex lg:mt-0 lg:flex-shrink-0">
+                <div class="inline-flex rounded-md shadow">
+                    <button class="inline-flex items-center justify-center px-5 py-3 border border-transparent text-base font-medium rounded-md text-blue-600 bg-white hover:bg-gray-50 transition-colors">
+                        Bắt đầu ngay
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 py-12 border-t border-gray-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row justify-between items-center">
+            <div class="flex justify-center items-center mb-4 md:mb-0">
+                <span class="text-2xl font-extrabold text-white tracking-tight">Hello<span class="text-gray-400">Eco</span></span>
+            </div>
+            <p class="text-gray-400 text-sm text-center md:text-left">
+                &copy; 2026 Phát triển bởi Nguyễn Đình Hào. Bảo lưu mọi quyền.
+            </p>
+            <div class="flex space-x-6 mt-4 md:mt-0 text-gray-400">
+                <a href="https://www.facebook.com/share/1G8eYpiJHR/?mibextid=wwXIfr" target="_blank" rel="noopener noreferrer" class="hover:text-white transition-colors"><i class="fa-brands fa-facebook text-xl"></i></a>
+                <a href="https://www.tiktok.com/@nguyenhao1201._?_r=1&_t=ZS-97DqaxDofIe" target="_blank" rel="noopener noreferrer" class="hover:text-white transition-colors"><i class="fa-brands fa-tiktok text-xl"></i></a>
+                <a href="https://github.com/nguyendinhhao1201-coder" target="_blank" rel="noopener noreferrer" class="hover:text-white transition-colors"><i class="fa-brands fa-github text-xl"></i></a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Chatbot Floating Button -->
+    <button onclick="toggleChat()" class="fixed bottom-6 right-6 w-14 h-14 bg-blue-600/90 backdrop-blur-md text-white rounded-full shadow-lg z-50 flex items-center justify-center hover:scale-105 transition-transform border border-white/20">
+        <i class="fa-solid fa-robot text-2xl"></i>
+    </button>
+
+    <!-- Chatbot Modal -->
+    <div id="chatModal" class="hidden fixed bottom-24 right-6 w-80 bg-gray-900/75 backdrop-blur-xl rounded-2xl shadow-2xl z-50 border border-gray-800/60 overflow-hidden">
+        <div class="bg-blue-600/85 backdrop-blur-md p-4 flex justify-between text-white font-bold border-b border-white/10">
+            <span>HelloAssistant</span>
+            <button onclick="toggleChat()"><i class="fa-solid fa-xmark"></i></button>
+        </div>
+        <div id="chatMessages" class="h-64 overflow-y-auto p-4 bg-transparent text-sm space-y-3">
+            <div class="bg-gray-800/90 p-3 rounded-2xl shadow-sm w-fit text-gray-200 border border-gray-700/50">Mình là trợ lý HelloAssistant được tạo ra bởi Nguyễn Đình Hào, mình có thể giúp gì cho bạn?</div>
+        </div>
+        <div class="p-3 border-t border-gray-700/50 bg-gray-900/40 flex gap-2">
+            <input id="chatInput" type="text" class="flex-1 border-none focus:ring-0 text-sm outline-none bg-transparent text-white" placeholder="Nhập câu hỏi...">
+        </div>
+    </div>
+
+    <!-- Modern iOS Glassmorphic Toast Element -->
+    <div id="toast" class="bg-gray-900/75 backdrop-blur-xl text-gray-100 text-sm font-medium px-5 py-4 rounded-2xl shadow-[0_12px_40px_rgba(0,0,0,0.12)] border border-gray-800/50 flex items-center gap-3">
+        <!-- Nội dung qua JS -->
+    </div>
+
+    <script>
+        // --- 1. KHỞI TẠO LENIS SMOOTH SCROLL ---
+        const lenis = new Lenis({
+            duration: 1.2,
+            easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+            direction: 'vertical',
+            gestureDirection: 'vertical',
+            smoothWaveform: true
+        });
+
+        function raf(time) {
+            lenis.raf(time);
+            requestAnimationFrame(raf);
+        }
+        requestAnimationFrame(raf);
+
+        function scrollToSection(event, targetId) {
+            event.preventDefault();
+            const target = document.querySelector(targetId);
+            if (target) {
+                lenis.scrollTo(target, { offset: -64 });
+            }
+        }
+
+        function scrollToTop() {
+            lenis.scrollTo(0);
+        }
+
+        // --- 2. CÁC LOGIC KHÁC ---
+        let toastTimeout;
+        function showToast(message) {
+            const toast = document.getElementById("toast");
+            
+            toast.innerHTML = `
+                <div class="w-8 h-8 bg-blue-900/50 rounded-xl flex items-center justify-center text-blue-400 shrink-0 shadow-sm border border-white/20">
+                    <i class="fa-solid fa-bell text-xs"></i>
+                </div>
+                <div class="flex-1">
+                    <p class="font-bold text-xs text-gray-500 uppercase tracking-wider mb-0.5">Hệ thống</p>
+                    <p class="text-gray-200 text-sm leading-relaxed">${message}</p>
+                </div>
+            `;
+            
+            clearTimeout(toastTimeout);
+            toast.classList.remove("show");
+            
+            setTimeout(() => {
+                toast.classList.add("show");
+            }, 50);
+
+            toastTimeout = setTimeout(function(){
+                toast.classList.remove("show");
+            }, 3500);
+        }
+
+        // Scroll Animations Observer
+        document.addEventListener("DOMContentLoaded", function() {
+            const observerOptions = {
+                root: null,
+                rootMargin: '0px',
+                threshold: 0.1
+            };
+
+            const observer = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.animationPlayState = 'running';
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, observerOptions);
+
+            document.querySelectorAll('.slide-up').forEach(el => {
+                el.style.animationPlayState = 'paused';
+                observer.observe(el);
+            });
+        });
+
+        // Chatbot Logic
+        function toggleChat() { 
+            document.getElementById('chatModal').classList.toggle('hidden'); 
+        }
+
+        const input = document.getElementById('chatInput');
+        input.addEventListener("keypress", function(event) {
+            if (event.key === "Enter") sendMessage();
+        });
+
+        function sendMessage() {
+            const msg = input.value.trim();
+            if (!msg) return;
+
+            const userMsg = document.createElement('div');
+            userMsg.className = 'bg-blue-600 text-white p-3 rounded-2xl ml-auto w-fit text-sm shadow-sm max-w-[85%]';
+            userMsg.textContent = msg;
+            document.getElementById('chatMessages').appendChild(userMsg);
+            input.value = '';
+
+            setTimeout(() => {
+                const botMsg = document.createElement('div');
+                botMsg.className = 'bg-gray-800/90 p-3 rounded-2xl w-fit shadow-sm text-gray-200 text-sm border border-gray-700/50 max-w-[85%]';
+                
+                const q = msg.toLowerCase();
+                
+                if (q.includes("helloeco") || q.includes("ai là người tạo") || q.includes("của ai")) {
+                    botMsg.textContent = "Hello Ecosystem là dự án tâm huyết được sáng lập và phát triển bởi Nguyễn Đình Hào.";
+                } else if (q.includes("job") || q.includes("food") || q.includes("pet") || q.includes("shop")) {
+                    botMsg.textContent = "Các dịch vụ trong hệ sinh thái của chúng tôi được tối ưu hóa để mang lại trải nghiệm chuyên nghiệp và tiện ích nhất cho người dùng.";
+                } else {
+                    botMsg.innerHTML = `Mình không biết trả lời câu hỏi này, mình có thể dùng <a href="https://www.google.com/search?q=${encodeURIComponent(msg)}" target="_blank" class="text-blue-400 underline">Google</a> để giúp bạn.`;
+                }
+                
+                document.getElementById('chatMessages').appendChild(botMsg);
+                document.getElementById('chatMessages').scrollTop = document.getElementById('chatMessages').scrollHeight;
+            }, 500);
+        }
+    </script>
+</body>
+</html>
