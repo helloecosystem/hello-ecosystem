@@ -14,6 +14,7 @@
     </script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
+    <!-- Lenis Smooth Scroll -->
     <script src="https://unpkg.com/lenis@1.1.13/dist/lenis.min.js"></script> 
     <link rel="stylesheet" href="https://unpkg.com/lenis@1.1.13/dist/lenis.css">
 
@@ -63,6 +64,7 @@
 </head>
 <body class="bg-gray-900 font-sans text-gray-200 antialiased overflow-x-hidden">
 
+    <!-- Navigation -->
     <nav class="bg-gray-800/90 backdrop-blur-md fixed w-full z-40 top-0 border-b border-gray-700/40">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex justify-between h-16 items-center">
@@ -76,6 +78,7 @@
                     <a href="#contact" onclick="scrollToSection(event, '#contact')" class="text-gray-300 hover:text-blue-400 px-3 py-2 rounded-md text-sm font-medium transition-colors">Liên hệ</a>
                 </div>
                 
+                <!-- Khu vực nút Tài khoản (Đăng nhập / Đăng ký) -->
                 <div id="authButtons" class="flex items-center space-x-4">
                     <button onclick="toggleAuthModal(true, 'login')" class="text-gray-300 hover:text-blue-400 font-medium text-sm hidden sm:block transition-colors">Đăng nhập</button>
                     <button onclick="toggleAuthModal(true, 'register')" class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-full text-sm font-medium transition-all shadow-md hover:shadow-lg">Đăng ký</button>
@@ -84,6 +87,7 @@
         </div>
     </nav>
 
+    <!-- Hero Section -->
     <div class="relative bg-gradient-to-br from-gray-800 to-gray-900 pt-32 pb-20 lg:pt-40 lg:pb-28 fade-in">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
             <h1 class="text-4xl tracking-tight font-extrabold text-white sm:text-5xl md:text-6xl">
@@ -101,6 +105,7 @@
         </div>
     </div>
 
+    <!-- Services Section -->
     <div id="services" class="py-20 bg-gray-900">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center mb-16">
@@ -111,14 +116,16 @@
             </div>
 
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- HelloJob -->
                 <div class="bg-gray-800 rounded-2xl shadow-sm border border-gray-700 p-8 hover:shadow-xl hover:-translate-y-1 transition-all duration-300 cursor-pointer slide-up delay-100" onclick="showToast('HelloJob đang được phát triển. Cùng đón chờ nhé!')">
                     <div class="w-14 h-14 bg-blue-900/50 rounded-xl flex items-center justify-center mb-6 text-blue-400">
                         <i class="fa-solid fa-briefcase text-2xl"></i>
                     </div>
                     <h3 class="text-xl font-bold text-white mb-3">HelloJob</h3>
-                    <p class="text-gray-400">Nền tảng tìm kiếm việc làm thông violent, kết nối ứng viên với hàng ngàn doanh nghiệp hàng đầu.</p>
+                    <p class="text-gray-400">Nền tảng tìm kiếm việc làm thông minh, kết nối ứng viên với hàng ngàn doanh nghiệp hàng đầu.</p>
                 </div>
 
+                <!-- HelloFood -->
                 <div class="bg-gray-800 rounded-2xl shadow-sm border border-gray-700 p-8 hover:shadow-xl hover:-translate-y-1 transition-all duration-300 cursor-pointer slide-up delay-200" onclick="showToast('HelloFood đang được phát triển. Cùng đón chờ nhé!')">
                     <div class="w-14 h-14 bg-orange-900/50 rounded-xl flex items-center justify-center mb-6 text-orange-400">
                         <i class="fa-solid fa-burger text-2xl"></i>
@@ -127,6 +134,7 @@
                     <p class="text-gray-400">Giao đồ ăn tận nơi nhanh chóng với hàng ngàn lựa chọn nhà hàng và món ăn đa dạng.</p>
                 </div>
 
+                <!-- HelloPet -->
                 <div class="bg-gray-800 rounded-2xl shadow-sm border border-gray-700 p-8 hover:shadow-xl hover:-translate-y-1 transition-all duration-300 cursor-pointer slide-up delay-300" onclick="showToast('HelloPet đang được phát triển. Cùng đón chờ nhé!')">
                     <div class="w-14 h-14 bg-pink-900/50 rounded-xl flex items-center justify-center mb-6 text-pink-400">
                         <i class="fa-solid fa-paw text-2xl"></i>
@@ -135,6 +143,7 @@
                     <p class="text-gray-400">Cộng đồng và dịch vụ chăm sóc toàn diện dành cho những người bạn bốn chân của bạn.</p>
                 </div>
 
+                <!-- HelloShop -->
                 <div class="bg-gray-800 rounded-2xl shadow-sm border border-gray-700 p-8 hover:shadow-xl hover:-translate-y-1 transition-all duration-300 cursor-pointer slide-up delay-400" onclick="showToast('HelloShop đang được phát triển. Cùng đón chờ nhé!')">
                     <div class="w-14 h-14 bg-purple-900/50 rounded-xl flex items-center justify-center mb-6 text-purple-400">
                         <i class="fa-solid fa-cart-shopping text-2xl"></i>
@@ -143,6 +152,7 @@
                     <p class="text-gray-400">Trải nghiệm mua sắm thương mại điện tử tiện lợi, an toàn và ngập tràn ưu đãi mỗi ngày.</p>
                 </div>
 
+                <!-- HelloWorld -->
                 <div class="bg-gray-800 rounded-2xl shadow-sm border border-gray-700 p-8 hover:shadow-xl hover:-translate-y-1 transition-all duration-300 cursor-pointer slide-up delay-500" onclick="showToast('HelloWorld đang được phát triển. Cùng đón chờ nhé!')">
                     <div class="w-14 h-14 bg-red-900/50 rounded-xl flex items-center justify-center mb-6 text-red-400">
                         <i class="fa-solid fa-play text-2xl"></i>
@@ -151,6 +161,7 @@
                     <p class="text-gray-400">Mạng xã hội video ngắn, nơi bạn thoả sức sáng tạo và chia sẻ những khoảnh khắc thú vị.</p>
                 </div>
 
+                <!-- Coming Soon -->
                 <div class="bg-gray-800/50 rounded-2xl border-2 border-dashed border-gray-600 p-8 flex flex-col items-center justify-center text-center slide-up delay-500">
                     <div class="w-14 h-14 bg-gray-700 rounded-full flex items-center justify-center mb-4 text-gray-400">
                         <i class="fa-solid fa-plus text-xl"></i>
@@ -162,6 +173,7 @@
         </div>
     </div>
 
+    <!-- About Section -->
     <div id="about" class="py-24 bg-gray-800 border-t border-gray-700 text-gray-200">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="lg:grid lg:grid-cols-2 lg:gap-16 items-center">
@@ -171,7 +183,7 @@
                         Xin chào, mình là <span class="text-blue-400">Nguyễn Đình Hào</span>
                     </h3>
                     <p class="mt-6 text-lg text-gray-300 leading-relaxed">
-                        Là một học sinh với niềm đamềm cháy bỏng dành cho công nghệ và lập trình, mình đã ấp ủ ý tưởng về <strong class="text-white">Hello Ecosystem</strong>. Nhận thấy sự phân mảnh của các dịch vụ trực tuyến hiện nay, mình mong muốn tạo ra một nền tảng thống nhất.
+                        Là một học sinh với niềm đam mê cháy bỏng dành cho công nghệ và lập trình, mình đã ấp ủ ý tưởng về <strong class="text-white">Hello Ecosystem</strong>. Nhận thấy sự phân mảnh của các dịch vụ trực tuyến hiện nay, mình mong muốn tạo ra một nền tảng thống nhất.
                     </p>
                     <p class="mt-4 text-lg text-gray-300 leading-relaxed">
                         Mục tiêu của dự án này không chỉ là thử thách bản thân trong việc học hỏi kiến thức lập trình mới (từ Web đến App), mà còn là khát vọng xây dựng một hệ sinh thái tiện ích, mang lại giá trị thực tế và trải nghiệm liền mạch cho cộng đồng.
@@ -205,6 +217,7 @@
         </div>
     </div>
 
+    <!-- Contact Section -->
     <div id="contact" class="py-24 bg-gray-900">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center mb-12 slide-up delay-100">
@@ -267,6 +280,7 @@
         </div>
     </div>
 
+    <!-- Call to Action -->
     <div class="bg-blue-600">
         <div class="max-w-7xl mx-auto py-12 px-4 sm:px-6 lg:py-16 lg:px-8 lg:flex lg:items-center lg:justify-between">
             <h2 class="text-3xl font-extrabold tracking-tight text-white sm:text-4xl">
@@ -283,6 +297,7 @@
         </div>
     </div>
 
+    <!-- Footer -->
     <footer class="bg-gray-900 py-12 border-t border-gray-800">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row justify-between items-center">
             <div class="flex justify-center items-center mb-4 md:mb-0">
@@ -299,6 +314,7 @@
         </div>
     </footer>
 
+    <!-- Bảng Tài Khoản Đa Năng 2-trong-1 (Đăng nhập & Đăng ký) -->
     <div id="authModal" class="hidden fixed inset-0 z-50 overflow-y-auto flex items-center justify-center p-4 bg-gray-950/60 backdrop-blur-md">
         <div class="relative bg-gray-800/90 border border-gray-700/60 w-full max-w-md p-6 rounded-3xl shadow-2xl transform scale-95 opacity-0 transition-all duration-300" id="authBox">
             
@@ -306,11 +322,13 @@
                 <i class="fa-solid fa-xmark"></i>
             </button>
 
+            <!-- Thanh chuyển đổi tab Đăng nhập / Đăng ký -->
             <div class="flex border-b border-gray-700 mb-6">
                 <button id="tabLogin" onclick="switchTab('login')" class="flex-1 pb-3 text-sm font-bold border-b-2 transition-colors text-blue-400 border-blue-500">Đăng Nhập</button>
                 <button id="tabRegister" onclick="switchTab('register')" class="flex-1 pb-3 text-sm font-bold border-b-2 transition-colors text-gray-400 border-transparent">Đăng Ký</button>
             </div>
 
+            <!-- FORM ĐĂNG NHẬP -->
             <form id="formLogin" onsubmit="handleLoginSubmit(event)" class="space-y-4">
                 <div>
                     <label class="block text-xs font-semibold uppercase tracking-wider text-gray-400 mb-1.5">Email của bạn</label>
@@ -325,6 +343,7 @@
                 </button>
             </form>
 
+            <!-- FORM ĐĂNG KÝ -->
             <form id="formRegister" onsubmit="handleRegisterSubmit(event)" class="space-y-4 hidden">
                 <div>
                     <label class="block text-xs font-semibold uppercase tracking-wider text-gray-400 mb-1.5">Tên của bạn</label>
@@ -346,27 +365,29 @@
                     Đăng ký ngay
                 </button>
             </form>
-
         </div>
     </div>
 
+    <!-- Chatbot Floating Button -->
     <button onclick="toggleChat()" class="fixed bottom-6 right-6 w-14 h-14 bg-blue-600/90 backdrop-blur-md text-white rounded-full shadow-lg z-50 flex items-center justify-center hover:scale-105 transition-transform border border-white/20">
         <i class="fa-solid fa-robot text-2xl"></i>
     </button>
 
+    <!-- Chatbot Modal -->
     <div id="chatModal" class="hidden fixed bottom-24 right-6 w-80 bg-gray-900/75 backdrop-blur-xl rounded-2xl shadow-2xl z-50 border border-gray-800/60 overflow-hidden">
         <div class="bg-blue-600/85 backdrop-blur-md p-4 flex justify-between text-white font-bold border-b border-white/10">
             <span>HelloAssistant</span>
             <button onclick="toggleChat()"><i class="fa-solid fa-xmark"></i></button>
         </div>
         <div id="chatMessages" class="h-64 overflow-y-auto p-4 bg-transparent text-sm space-y-3">
-            <div class="bg-gray-800/90 p-3 rounded-2xl shadow-sm w-fit text-gray-200 border border-gray-700/50">Mình là trợ lý HelloAssistant được tạo ra bởi Nguyễn Đình Hào, mình có thể giúp gì cho bạn?</div>
+            <!-- Tin nhắn chào sẽ tự động sinh ra tại đây nhờ Javascript -->
         </div>
         <div class="p-3 border-t border-gray-700/50 bg-gray-900/40 flex gap-2">
             <input id="chatInput" type="text" class="flex-1 border-none focus:ring-0 text-sm outline-none bg-transparent text-white" placeholder="Nhập câu hỏi...">
         </div>
     </div>
 
+    <!-- Modern iOS Glassmorphic Toast Element -->
     <div id="toast" class="bg-gray-900/75 backdrop-blur-xl text-gray-100 text-sm font-medium px-5 py-4 rounded-2xl shadow-[0_12px_40px_rgba(0,0,0,0.12)] border border-gray-800/50 flex items-center gap-3"></div>
 
     <script>
@@ -393,7 +414,7 @@
 
         function scrollToTop() { lenis.scrollTo(0); }
 
-        // --- 2. LOGIC TÀI KHOẢN (ĐĂNG KÝ & ĐĂNG NHẬP THỰC TẾ) ---
+        // --- 2. LOGIC TÀI KHOẢN & KIỂM TRA ĐĂNG NHẬP ---
         function checkUserLogin() {
             const savedUser = localStorage.getItem("helloEcoUser");
             const authButtons = document.getElementById("authButtons");
@@ -418,7 +439,7 @@
             
             if (show) {
                 modal.classList.remove('hidden');
-                switchTab(tab); // Chuyển đúng tab người dùng bấm
+                switchTab(tab);
                 setTimeout(() => {
                     box.classList.remove('scale-95', 'opacity-0');
                     box.classList.add('scale-100', 'opacity-100');
@@ -449,7 +470,6 @@
             }
         }
 
-        // Xử lý khi bấm nút ĐĂNG KÝ
         function handleRegisterSubmit(event) {
             event.preventDefault();
             const name = document.getElementById("regName").value;
@@ -457,7 +477,7 @@
             const password = document.getElementById("regPassword").value;
 
             const userData = { name: name, email: email, password: password };
-            localStorage.setItem("helloEcoUser", JSON.stringify(userData)); // Lưu tài khoản
+            localStorage.setItem("helloEcoUser", JSON.stringify(userData));
 
             toggleAuthModal(false);
             checkUserLogin();
@@ -468,13 +488,10 @@
             event.target.reset();
         }
 
-        // Xử lý khi bấm nút ĐĂNG NHẬP
         function handleLoginSubmit(event) {
             event.preventDefault();
             const emailInput = document.getElementById("loginEmail").value;
             const passwordInput = document.getElementById("loginPassword").value;
-
-            // Lấy tài khoản đã lưu trong máy ra kiểm tra
             const savedUser = localStorage.getItem("helloEcoUser");
 
             if (!savedUser) {
@@ -484,7 +501,6 @@
 
             const user = JSON.parse(savedUser);
 
-            // Kiểm tra Email và Mật khẩu xem có khớp không
             if (user.email === emailInput && user.password === passwordInput) {
                 toggleAuthModal(false);
                 checkUserLogin();
@@ -503,46 +519,33 @@
             showToast("Đã đăng xuất tài khoản thành công.");
         }
 
-        document.addEventListener("DOMContentLoaded", function() {
-            checkUserLogin();
+        // --- 3. ĐIỀU KHIỂN CHATBOT & THAY ĐỔI CÂU CHÀO THEO TÊN ---
+        function toggleChat() { 
+            const chatModal = document.getElementById('chatModal');
+            chatModal.classList.toggle('hidden'); 
 
-            // Scroll Animations Observer
-            const observerOptions = { root: null, rootMargin: '0px', threshold: 0.1 };
-            const observer = new IntersectionObserver((entries, observer) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        entry.target.style.animationPlayState = 'running';
-                        observer.unobserve(entry.target);
-                    }
-                });
-            }, observerOptions);
+            // Khi mở chat lên, kiểm tra xem khách hàng đăng nhập chưa để đổi câu chào
+            if (!chatModal.classList.contains('hidden')) {
+                const chatMessages = document.getElementById('chatMessages');
+                const savedUser = localStorage.getItem("helloEcoUser");
+                
+                chatMessages.innerHTML = ''; // Reset khung chat để tránh bị lặp tin nhắn cũ
 
-            document.querySelectorAll('.slide-up').forEach(el => {
-                el.style.animationPlayState = 'paused';
-                observer.observe(el);
-            });
-        });
+                let greetingText = "Mình là trợ lý HelloAssistant được tạo ra bởi Nguyễn Đình Hào, mình có thể giúp gì cho bạn?";
 
-        // --- 3. TOAST & CHATBOT ---
-        let toastTimeout;
-        function showToast(message) {
-            const toast = document.getElementById("toast");
-            toast.innerHTML = `
-                <div class="w-8 h-8 bg-blue-900/50 rounded-xl flex items-center justify-center text-blue-400 shrink-0 shadow-sm border border-white/20">
-                    <i class="fa-solid fa-bell text-xs"></i>
-                </div>
-                <div class="flex-1">
-                    <p class="font-bold text-xs text-gray-500 uppercase tracking-wider mb-0.5">Hệ thống</p>
-                    <p class="text-gray-200 text-sm leading-relaxed">${message}</p>
-                </div>
-            `;
-            clearTimeout(toastTimeout);
-            toast.classList.remove("show");
-            setTimeout(() => { toast.classList.add("show"); }, 50);
-            toastTimeout = setTimeout(function(){ toast.classList.remove("show"); }, 3500);
+                // Nếu có tài khoản, AI sẽ gọi tên khách hàng xịn xò ngay
+                if (savedUser) {
+                    const user = JSON.parse(savedUser);
+                    greetingText = `Hello ${user.name}! Mình là trợ lý HelloAssistant được tạo ra bởi Nguyễn Đình Hào, mình có thể giúp gì cho bạn?`;
+                }
+
+                const welcomeMsg = document.createElement('div');
+                welcomeMsg.className = 'bg-gray-800/90 p-3 rounded-2xl shadow-sm w-fit text-gray-200 border border-gray-700/50 max-w-[85%]';
+                welcomeMsg.textContent = greetingText;
+                
+                chatMessages.appendChild(welcomeMsg);
+            }
         }
-
-        function toggleChat() { document.getElementById('chatModal').classList.toggle('hidden'); }
 
         const input = document.getElementById('chatInput');
         input.addEventListener("keypress", function(event) {
@@ -574,6 +577,46 @@
                 document.getElementById('chatMessages').appendChild(botMsg);
                 document.getElementById('chatMessages').scrollTop = document.getElementById('chatMessages').scrollHeight;
             }, 500);
+        }
+
+        // Khởi chạy hệ thống ngay khi tải trang
+        document.addEventListener("DOMContentLoaded", function() {
+            checkUserLogin();
+
+            // Scroll Animations Observer
+            const observerOptions = { root: null, rootMargin: '0px', threshold: 0.1 };
+            const observer = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.animationPlayState = 'running';
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, observerOptions);
+
+            document.querySelectorAll('.slide-up').forEach(el => {
+                el.style.animationPlayState = 'paused';
+                observer.observe(el);
+            });
+        });
+
+        // --- 4. HỆ THỐNG THÔNG BÁO (TOAST) ---
+        let toastTimeout;
+        function showToast(message) {
+            const toast = document.getElementById("toast");
+            toast.innerHTML = `
+                <div class="w-8 h-8 bg-blue-900/50 rounded-xl flex items-center justify-center text-blue-400 shrink-0 shadow-sm border border-white/20">
+                    <i class="fa-solid fa-bell text-xs"></i>
+                </div>
+                <div class="flex-1">
+                    <p class="font-bold text-xs text-gray-500 uppercase tracking-wider mb-0.5">Hệ thống</p>
+                    <p class="text-gray-200 text-sm leading-relaxed">${message}</p>
+                </div>
+            `;
+            clearTimeout(toastTimeout);
+            toast.classList.remove("show");
+            setTimeout(() => { toast.classList.add("show"); }, 50);
+            toastTimeout = setTimeout(function(){ toast.classList.remove("show"); }, 3500);
         }
     </script>
 </body>
