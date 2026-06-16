@@ -171,7 +171,7 @@
                         Xin chào, mình là <span class="text-blue-400">Nguyễn Đình Hào</span>
                     </h3>
                     <p class="mt-6 text-lg text-gray-300 leading-relaxed">
-                        Là một học sinh với niềm đamê cháy bỏng dành cho công nghệ và lập trình, mình đã ấp ủ ý tưởng về <strong class="text-white">Hello Ecosystem</strong>. Nhận thấy sự phân mạch của các dịch vụ trực tuyến hiện nay, mình mong muốn tạo ra một nền tảng thống nhất.
+                        Là một học sinh với niềm đam mê cháy bỏng dành cho công nghệ và lập trình, mình đã ấp ủ ý tưởng về <strong class="text-white">Hello Ecosystem</strong>. Nhận thấy sự phân mạch của các dịch vụ trực tuyến hiện nay, mình mong muốn tạo ra một nền tảng thống nhất.
                     </p>
                     <p class="mt-4 text-lg text-gray-300 leading-relaxed">
                         Mục tiêu của dự án này không chỉ là thử thách bản thân trong việc học hỏi kiến thức lập trình mới (từ Web đến App), mà còn là khát vọng xây dựng một hệ sinh thái tiện ích, mang lại giá trị thực tế và trải nghiệm liền mạch cho cộng đồng.
@@ -318,7 +318,12 @@
                 </div>
                 <div>
                     <label class="block text-xs font-semibold uppercase tracking-wider text-gray-400 mb-1.5">Mật khẩu</label>
-                    <input id="loginPassword" type="password" required class="w-full bg-gray-900 border border-gray-700 rounded-xl px-4 py-3 text-sm text-white focus:outline-none focus:border-blue-500 transition-colors" placeholder="••••••••">
+                    <div class="relative flex items-center">
+                        <input id="loginPassword" type="password" required class="w-full bg-gray-900 border border-gray-700 rounded-xl pl-4 pr-12 py-3 text-sm text-white focus:outline-none focus:border-blue-500 transition-colors" placeholder="••••••••">
+                        <button type="button" onclick="togglePasswordVisibility('loginPassword', 'eyeIconLogin')" class="absolute right-4 text-gray-400 hover:text-white focus:outline-none text-base">
+                            <i id="eyeIconLogin" class="fa-solid fa-eye-slash"></i>
+                        </button>
+                    </div>
                 </div>
                 <button type="submit" class="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 rounded-xl text-sm transition-all shadow-md hover:shadow-lg mt-4">
                     Đăng nhập
@@ -336,7 +341,12 @@
                 </div>
                 <div>
                     <label class="block text-xs font-semibold uppercase tracking-wider text-gray-400 mb-1.5">Mật khẩu</label>
-                    <input id="regPassword" type="password" required class="w-full bg-gray-900 border border-gray-700 rounded-xl px-4 py-3 text-sm text-white focus:outline-none focus:border-blue-500 transition-colors" placeholder="••••••••">
+                    <div class="relative flex items-center">
+                        <input id="regPassword" type="password" required class="w-full bg-gray-900 border border-gray-700 rounded-xl pl-4 pr-12 py-3 text-sm text-white focus:outline-none focus:border-blue-500 transition-colors" placeholder="••••••••">
+                        <button type="button" onclick="togglePasswordVisibility('regPassword', 'eyeIconRegister')" class="absolute right-4 text-gray-400 hover:text-white focus:outline-none text-base">
+                            <i id="eyeIconRegister" class="fa-solid fa-eye-slash"></i>
+                        </button>
+                    </div>
                 </div>
                 <div class="flex items-center gap-2 pt-2">
                     <input type="checkbox" id="agree" required class="w-4 h-4 rounded border-gray-700 bg-gray-900 text-blue-600 focus:ring-0 focus:ring-offset-0">
@@ -391,9 +401,7 @@
 
         function scrollToTop() { lenis.scrollTo(0); }
 
-        // --- 2. LOGIC QUẢN LÝ TÀI KHOẢN (LƯU TRỮ DANH SÁCH KHÔNG BỊ GHI ĐÈ) ---
-        
-        // Kiểm tra xem ai đang đăng nhập phiên hiện tại
+        // --- 2. LOGIC QUẢN LÝ TÀI KHOẢN ---
         function checkUserLogin() {
             const currentOnline = localStorage.getItem("helloEcoCurrentOnline");
             const authButtons = document.getElementById("authButtons");
@@ -436,6 +444,9 @@
             const formLogin = document.getElementById('formLogin');
             const formRegister = document.getElementById('formRegister');
 
+            // Reset trạng thái ẩn mật khẩu khi chuyển tab
+            resetPasswordFields();
+
             if (type === 'login') {
                 tabLogin.className = "flex-1 pb-3 text-sm font-bold border-b-2 transition-colors text-blue-400 border-blue-500";
                 tabRegister.className = "flex-1 pb-3 text-sm font-bold border-b-2 transition-colors text-gray-400 border-transparent";
@@ -449,32 +460,51 @@
             }
         }
 
-        // XỬ LÝ ĐĂNG KÝ: Lưu vào mảng danh sách người dùng
+        // HÀM ĐIỀU KHIỂN ẨN / HIỆN MẬT KHẨU
+        function togglePasswordVisibility(inputId, iconId) {
+            const passwordInput = document.getElementById(inputId);
+            const eyeIcon = document.getElementById(iconId);
+
+            if (passwordInput.type === "password") {
+                passwordInput.type = "text";
+                // Đổi icon thành mắt mở
+                eyeIcon.classList.remove("fa-eye-slash");
+                eyeIcon.classList.add("fa-eye");
+            } else {
+                passwordInput.type = "password";
+                // Đổi icon thành mắt gạch chéo
+                eyeIcon.classList.remove("fa-eye");
+                eyeIcon.classList.add("fa-eye-slash");
+            }
+        }
+
+        // Hàm đưa các ô mật khẩu về lại dạng ẩn (Dùng khi chuyển tab hoặc đóng modal)
+        function resetPasswordFields() {
+            document.getElementById('loginPassword').type = "password";
+            document.getElementById('eyeIconLogin').className = "fa-solid fa-eye-slash";
+            document.getElementById('regPassword').type = "password";
+            document.getElementById('eyeIconRegister').className = "fa-solid fa-eye-slash";
+        }
+
         function handleRegisterSubmit(event) {
             event.preventDefault();
             const name = document.getElementById("regName").value;
             const email = document.getElementById("regEmail").value;
             const password = document.getElementById("regPassword").value;
 
-            // Lấy danh sách tài khoản hiện tại ra (nếu chưa có thì tạo mảng rỗng [])
             let userList = localStorage.getItem("helloEcoUserList");
             userList = userList ? JSON.parse(userList) : [];
 
-            // Kiểm tra xem email này đã có ai đăng ký chưa
             const isExist = userList.some(user => user.email === email);
             if (isExist) {
                 showToast("Email này đã được đăng ký! Vui lòng Đăng nhập.");
                 return;
             }
 
-            // Tạo object tài khoản mới và đẩy vào mảng danh sách
             const newUserData = { name: name, email: email, password: password };
             userList.push(newUserData);
 
-            // Lưu danh sách mới ngược lại vào localStorage
             localStorage.setItem("helloEcoUserList", JSON.stringify(userList));
-            
-            // Đồng thời đặt trạng thái đăng nhập hiện tại cho người này luôn
             localStorage.setItem("helloEcoCurrentOnline", JSON.stringify(newUserData));
 
             toggleAuthModal(false);
@@ -486,21 +516,17 @@
             event.target.reset();
         }
 
-        // XỬ LÝ ĐĂNG NHẬP: Tìm kiếm trong mảng danh sách người dùng
         function handleLoginSubmit(event) {
             event.preventDefault();
             const emailInput = document.getElementById("loginEmail").value;
             const passwordInput = document.getElementById("loginPassword").value;
 
-            // Lấy danh sách tài khoản trong hệ thống ra để đối chiếu
             let userList = localStorage.getItem("helloEcoUserList");
             userList = userList ? JSON.parse(userList) : [];
 
-            // Tìm kiếm người dùng có email và password trùng khớp
             const matchedUser = userList.find(user => user.email === emailInput && user.password === passwordInput);
 
             if (matchedUser) {
-                // Nếu tìm thấy, đặt trạng thái online cho tài khoản này
                 localStorage.setItem("helloEcoCurrentOnline", JSON.stringify(matchedUser));
                 toggleAuthModal(false);
                 checkUserLogin();
@@ -509,18 +535,17 @@
                 }, 400);
                 event.target.reset();
             } else {
-                // Nếu không thấy, kiểm tra xem email có tồn tại không để báo chính xác
                 const isEmailValid = userList.some(user => user.email === emailInput);
                 if (isEmailValid) {
                     showToast("Mật khẩu không chính xác! Vui lòng thử lại.");
                 } else {
-                    showToast("Tài khoản chưa tồn tại trên hệ thống! Vui lòng chọn tab Đăng Ký.");
+                    showToast("Tài khoản chưa tồn tại trên hệ sinh thái! Vui lòng Đăng Ký.");
                 }
             }
         }
 
         function handleLogout() {
-            localStorage.removeItem("helloEcoCurrentOnline"); // Xóa trạng thái đăng nhập
+            localStorage.removeItem("helloEcoCurrentOnline");
             checkUserLogin();
             showToast("Đã đăng xuất tài khoản thành công.");
         }
